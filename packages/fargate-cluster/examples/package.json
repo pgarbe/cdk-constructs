@@ -1,0 +1,19 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-cdk/aws-lambda": "^0.14.1",
+    "@aws-cdk/cdk": "^0.14.1",
+    "@pgarbe/monitoredLambda": "file:../monitoredLambda",
+    "@types/node": "^10.12.2"
+  }
+}

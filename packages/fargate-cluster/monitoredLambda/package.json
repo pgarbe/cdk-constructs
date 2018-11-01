@@ -1,0 +1,27 @@
+{
+  "name": "@pgarbe/monitoredLambda",
+  "version": "0.1.0",
+  "description": "A Lambda with expiring logs and basic monitoring.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "nodeunit ./test"
+  },
+  "keywords": [],
+  "author": "Philipp Garbe",
+  "license": "MIT",
+  "devDependencies": {
+    "@aws-cdk/assert": "^0.14.1",
+    "@types/nodeunit": "^0.0.30",
+    "nodeunit": "^0.11.2",
+    "typescript": "^3.1.5"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-cloudwatch": "^0.14.1",
+    "@aws-cdk/aws-lambda": "^0.14.1",
+    "@aws-cdk/cdk": "^0.14.1",
+    "@types/node": "^10.12.2"
+  }
+}
