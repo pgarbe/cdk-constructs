@@ -11,7 +11,8 @@ class MyStack extends cdk.Stack {
             functionProps: {
                 runtime: lambda.Runtime.NodeJS810,
                 handler: 'index.handler',
-                code: lambda.Code.inline('exports.handler = function(event, ctx, cb) { return cb(null, "hi"); }')
+                // code: lambda.Code.inline('exports.handler = function(event, ctx, cb) { return cb(null, "hi"); }')
+                code: lambda.Code.asset('./lambda-handler'),
             }
         });
         
