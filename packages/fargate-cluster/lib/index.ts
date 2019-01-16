@@ -1,5 +1,4 @@
 import cdk = require('@aws-cdk/cdk');
-import ec2 = require('@aws-cdk/aws-ec2');
 import ecs = require('@aws-cdk/aws-ecs');
 import elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
 import { IVpcNetwork } from '@aws-cdk/aws-ecs/node_modules/@aws-cdk/aws-ec2';
@@ -22,12 +21,13 @@ export class FargateCluster extends cdk.Construct {
     constructor(parent: cdk.Construct, name: string, props: FargateClusterProps) {
         super(parent, name);
 
-        const cluster = new ecs.Cluster(this, 'MyCluster', {
+        new ecs.Cluster(this, name, {
             vpc: props.vpc
         });
 
 
         const lb = new elbv2.ApplicationLoadBalancer(this, 'LB', { vpc: props.vpc, internetFacing: true });
+        lb.addListener('Listener', { port: 443 });
 
         // Todo: Forward port 80 to 443
         // lb.addListener('Listener', { 
@@ -35,7 +35,6 @@ export class FargateCluster extends cdk.Construct {
         // });
 
 
-        const listener = lb.addListener('Listener', { port: 443 });
 
         
     }

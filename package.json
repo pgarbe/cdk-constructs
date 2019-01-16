@@ -2,6 +2,13 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.10.5"
+    "@aws-cdk/assert": "^0.20.0",
+    "@types/nodeunit": "^0.0.30",
+    "lerna": "^3.10.5",
+    "nodeunit": "^0.11.3",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "fargate-cluster": "file:packages/fargate-cluster"
   }
 }
