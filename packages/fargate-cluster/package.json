@@ -1,6 +1,6 @@
 {
   "name": "fargate-cluster",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1+bae2897",
   "description": "A Fargate cluster and ALB which can be used by Fargate services",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -14,5 +14,6 @@
     "@aws-cdk/aws-elasticloadbalancingv2": "*"
   },
   "author": "Philipp Garbe",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "gitHead": "bae2897df23b7a4796ec4340d0354b1e4ca038ee"
 }
