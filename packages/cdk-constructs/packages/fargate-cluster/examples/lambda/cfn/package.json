@@ -13,7 +13,7 @@
   "dependencies": {
     "@aws-cdk/aws-lambda": "^0.14.1",
     "@aws-cdk/cdk": "^0.14.1",
-    "@pgarbe/monitoredLambda": "file:../monitoredLambda",
+    "@pgarbe/monitored-lambda": "file:../monitored-lambda",
     "@types/node": "^10.12.2"
   }
 }
