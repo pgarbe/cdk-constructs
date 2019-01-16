@@ -1,0 +1,29 @@
+{
+  "name": "@pgarbe/ecs-cluster",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "nodeunit ./test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@aws-cdk/assert": "^0.14.1",
+    "@types/nodeunit": "^0.0.30",
+    "nodeunit": "^0.11.2",
+    "typescript": "^3.1.5"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-autoscaling": "^0.14.1",
+    "@aws-cdk/aws-ec2": "^0.14.1",
+    "@aws-cdk/aws-ecs": "^0.14.1",
+    "@aws-cdk/aws-s3": "^0.14.1",
+    "@aws-cdk/cdk": "^0.14.1",
+    "@types/node": "^10.12.2"
+  }
+}
