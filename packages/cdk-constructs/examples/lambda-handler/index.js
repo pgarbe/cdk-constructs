@@ -1,1 +1,0 @@
-exports.handler = function(event, ctx, cb) { return cb(null, "hi from asset"); }
