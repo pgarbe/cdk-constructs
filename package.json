@@ -9,6 +9,6 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "fargate-cluster": "file:packages/fargate-cluster"
+    "fargate": "file:packages/fargate"
   }
 }

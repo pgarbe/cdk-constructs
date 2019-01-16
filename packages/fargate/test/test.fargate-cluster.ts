@@ -5,7 +5,7 @@ import { Test } from 'nodeunit';
 import fc = require('../lib');
 
 export = {
-  'test ECS loadbalanced construct'(test: Test) {
+  'test fargate cluster construct'(test: Test) {
     // GIVEN
     const stack = new cdk.Stack();
     const vpc = new ec2.VpcNetwork(stack, 'VPC');
@@ -15,7 +15,7 @@ export = {
       vpc
     });
 
-    // THEN - stack containers a load balancer
+    // THEN - stack contains a load balancer
     expect(stack).to(haveResource('AWS::ElasticLoadBalancingV2::LoadBalancer', {
     }));
 

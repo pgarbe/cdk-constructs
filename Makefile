@@ -2,6 +2,9 @@
 .ONESHELL:
 .SILENT:
 
+bootstrap:
+	npm i --no-package-lock --global-style
+	lerna bootstrap --reject-cycles
 
 build:
 	time lerna run --stream build || fail
