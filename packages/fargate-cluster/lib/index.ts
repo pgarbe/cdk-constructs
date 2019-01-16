@@ -1,7 +1,7 @@
 import cdk = require('@aws-cdk/cdk');
 import ecs = require('@aws-cdk/aws-ecs');
 import elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
-import { IVpcNetwork } from '@aws-cdk/aws-ecs/node_modules/@aws-cdk/aws-ec2';
+import { IVpcNetwork } from '@aws-cdk/aws-ec2';
 
 export interface FargateClusterProps {
     // /**
