@@ -25,7 +25,6 @@ export class FargateCluster extends cdk.Construct {
             vpc: props.vpc
         });
 
-
         const lb = new elbv2.ApplicationLoadBalancer(this, 'LB', { vpc: props.vpc, internetFacing: true });
         lb.addListener('Listener', { port: 443 });
 
@@ -33,9 +32,5 @@ export class FargateCluster extends cdk.Construct {
         // lb.addListener('Listener', { 
         //     port: 80 
         // });
-
-
-
-        
     }
 }
