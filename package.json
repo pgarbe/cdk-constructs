@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@aws-cdk/assert": "^0.20.0",
+    "@aws-cdk/assert": "^0.22.0",
     "@types/nodeunit": "^0.0.30",
     "lerna": "^3.10.5",
     "nodeunit": "^0.11.3",

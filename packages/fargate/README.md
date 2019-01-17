@@ -15,6 +15,3 @@ const service = new fargate.FargateService(this, 'MyService', {
   pathPattern or hostPattern
 });
 ```
-
-
-

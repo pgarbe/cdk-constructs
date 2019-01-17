@@ -14,3 +14,6 @@ test: build
 
 publish: test
 	learna publish
+
+clean:
+	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +

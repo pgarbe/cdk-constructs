@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - 10
-# install:
-#   - npm install && cd ..
+
+install:
+  - make bootstrap
+
 script:
   - make test
