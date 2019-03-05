@@ -7,16 +7,17 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "nodeunit ./test"
+    "test": "nodeunit ./test",
+    "lint": "tslint 'lib/**/*.ts{,x}'"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^0.22.0",
+    "@aws-cdk/assert": "^0.25.0",
     "nodeunit": "^0.11.3"
   },
   "dependencies": {
-    "@aws-cdk/aws-ec2": "^0.22.0",
-    "@aws-cdk/aws-ecs": "^0.22.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "^0.22.0"
+    "@aws-cdk/aws-ec2": "^0.25.0",
+    "@aws-cdk/aws-ecs": "^0.25.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^0.25.0"
   },
   "author": "Philipp Garbe",
   "license": "Apache-2.0",
