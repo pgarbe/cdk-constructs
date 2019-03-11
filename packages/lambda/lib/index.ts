@@ -1,8 +1,8 @@
-import cdk = require('@aws-cdk/cdk');
-import lambda = require('@aws-cdk/aws-lambda');
 import { Alarm } from '@aws-cdk/aws-cloudwatch';
-import { LogGroup } from '@aws-cdk/aws-logs';
 import { FunctionProps } from '@aws-cdk/aws-lambda';
+import lambda = require('@aws-cdk/aws-lambda');
+import { LogGroup } from '@aws-cdk/aws-logs';
+import cdk = require('@aws-cdk/cdk');
 
 export interface MonitoredLambdaProps {
     /**
@@ -30,7 +30,7 @@ export class MonitoredLambda extends cdk.Construct {
             evaluationPeriods: 2,
         });
 
-        new LogGroup(this, 'LogGroup', { 
+        new LogGroup(this, 'LogGroup', {
             logGroupName: fn.functionName,
             retentionDays: props.retentionDays
         });

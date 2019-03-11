@@ -1,6 +1,6 @@
+import cloudwatch = require('@aws-cdk/aws-cloudwatch');
 import events = require('@aws-cdk/aws-events');
 import lambda = require('@aws-cdk/aws-lambda');
-import cloudwatch = require('@aws-cdk/aws-cloudwatch');
 import cdk = require('@aws-cdk/cdk');
 
 export interface DriftCheckerProps {
@@ -34,7 +34,7 @@ export class DriftChecker extends cdk.Construct {
       });
 
       timer.addTarget(checker);
-    }    
+    }
   }
 
   /**
@@ -56,7 +56,7 @@ export class DriftChecker extends cdk.Construct {
    */
   public metricDriftedStacks(props?: cloudwatch.MetricCustomization): cloudwatch.Metric {
     return this.metric('DriftedStacks', props );
-  }  
+  }
   // TODO: Expose "metrics"
 
 }

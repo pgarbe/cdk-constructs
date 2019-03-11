@@ -8,16 +8,18 @@ For now, a playground for [AWS CDK](https://awslabs.github.io/aws-cdk/) construc
 
 * [FargateCluster](https://github.com/pgarbe/cdk-constructs/blob/master/packages/fargate/README.md#FargateCluster)
 * [FargateService](https://github.com/pgarbe/cdk-constructs/blob/master/packages/fargate/README.md#FargateService)
-* MonitoredLambda
-* ReverseDriftDetection
-* ScalingEcsCluster
-* ReliableEcrRepo
+* MonitoredLambda (tbd)
+* ReverseDriftDetection (tbd)
+* ScalingEcsCluster (tbd)
+* ReliableEcrRepo (tbd)
 
 # How to setup your own CDK Package Library
 
 Warning: CDK is under heavy development.
 
 Why Typescript?
+
+## Setting up VSCode
 
 ## Using Lerna
 
