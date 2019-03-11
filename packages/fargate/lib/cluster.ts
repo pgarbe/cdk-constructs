@@ -1,8 +1,8 @@
-import cdk = require('@aws-cdk/cdk');
+import { ICertificate } from '@aws-cdk/aws-certificatemanager';
+import { IVpcNetwork } from '@aws-cdk/aws-ec2';
 import ecs = require('@aws-cdk/aws-ecs');
 import elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
-import { IVpcNetwork } from '@aws-cdk/aws-ec2';
-import { ICertificate } from '@aws-cdk/aws-certificatemanager';
+import cdk = require('@aws-cdk/cdk');
 
 export interface FargateClusterProps {
   // /**
@@ -17,7 +17,7 @@ export interface FargateClusterProps {
    * Certificate Manager certificate to associate with the load balancer.
    * Setting this option will set the load balancer port to 443.
    */
-  certificate?: ICertificate;    
+  certificate?: ICertificate;
 }
 
 export class FargateCluster extends cdk.Construct {
@@ -35,7 +35,7 @@ export class FargateCluster extends cdk.Construct {
     const lb = new elbv2.ApplicationLoadBalancer(this, 'LB', { vpc: props.vpc, internetFacing: true });
 
     const hasCertificate = props.certificate !== undefined;
-    const listener = lb.addListener('PublicListener', { 
+    const listener = lb.addListener('PublicListener', {
       port: hasCertificate ? 443 : 80,
       open: true
     });
@@ -50,8 +50,8 @@ export class FargateCluster extends cdk.Construct {
     });
 
     // Todo: Forward port 80 to 443
-    // lb.addListener('Listener', { 
-    //     port: 80 
+    // lb.addListener('Listener', {
+    //     port: 80
     // });
   }
 }

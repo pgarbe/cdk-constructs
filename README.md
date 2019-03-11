@@ -4,10 +4,19 @@ CDK Constructs
 
 For now, a playground for [AWS CDK](https://awslabs.github.io/aws-cdk/) constructs. 
 
+# Constructs
+
+* [FargateCluster](https://github.com/pgarbe/cdk-constructs/blob/master/packages/fargate/README.md#FargateCluster)
+* [FargateService](https://github.com/pgarbe/cdk-constructs/blob/master/packages/fargate/README.md#FargateService)
+* MonitoredLambda
+* ReverseDriftDetection
+* ScalingEcsCluster
+* ReliableEcrRepo
 
 # How to setup your own CDK Package Library
 
 Warning: CDK is under heavy development.
+
 Why Typescript?
 
 ## Using Lerna
@@ -31,11 +40,7 @@ Unfortunately, awslint can not be used to check your own libraries. I opened alr
 * CDK libs
 
 ## CI/CD using CodePipeline
+https://github.com/awslabs/aws-delivlib
 
 ## Multi language support
 
-
-## To try
-[] unit tests for libs
-[] how to setup CI/CD pipeline
-[] use cdk linter
