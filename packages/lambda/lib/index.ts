@@ -1,5 +1,4 @@
 import { Alarm } from '@aws-cdk/aws-cloudwatch';
-import { FunctionProps } from '@aws-cdk/aws-lambda';
 import lambda = require('@aws-cdk/aws-lambda');
 import { LogGroup } from '@aws-cdk/aws-logs';
 import cdk = require('@aws-cdk/cdk');
@@ -11,7 +10,7 @@ export interface MonitoredLambdaProps {
      * @default 10
      */
     retentionDays?: number;
-    functionProps: FunctionProps
+    functionProps: lambda.FunctionProps
 }
 
 export class MonitoredLambda extends cdk.Construct {

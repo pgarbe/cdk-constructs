@@ -4,15 +4,17 @@
   "devDependencies": {
     "@aws-cdk/assert": "^0.25.0",
     "@types/nodeunit": "^0.0.30",
+    "jsii": "^0.7.15",
+    "jsii-pacmak": "^0.7.15",
     "lerna": "^3.13.1",
     "nodeunit": "^0.11.3",
-    "typescript": "^3.3.3333",
-    "tslint": "^5.13.1"
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "lint": "tslint 'packages/**/*.ts{,x}'"
   },
   "dependencies": {
-    "fargate": "file:packages/fargate"
+    "aws-delivlib": "^3.4.0"
   }
 }

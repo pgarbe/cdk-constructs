@@ -17,9 +17,9 @@ test: build
 	lerna run --stream lint || fail
 	lerna run --stream test || fail
 
-publish: test
-	learna publish
+package: test
+	time lerna run --stream package || fail
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
-	# maybe also delete package-lock.json
+	find . -name "package-lock.json" -type f -prune -exec rm -rf '{}' +

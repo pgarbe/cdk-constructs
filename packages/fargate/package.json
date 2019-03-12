@@ -5,13 +5,28 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "jsii",
+    "watch": "jsii -w",
+    "package": "jsii-pacmak -v",
     "test": "nodeunit ./test",
     "lint": "tslint 'lib/**/*.ts{,x}'"
   },
+  "jsii": {
+    "outdir": "dist",
+    "targets": {
+      "java": {
+        "package": "io.garbe.cdkconstructs.fargate",
+        "maven": {
+          "groupId": "io.garbe.cdkconstructs",
+          "artifactId": "fargate"
+        }
+      }
+    }
+  },
   "devDependencies": {
     "@aws-cdk/assert": "^0.25.2",
+    "jsii": "^0.7.15",
+    "jsii-pacmak": "^0.7.15",
     "nodeunit": "^0.11.3"
   },
   "dependencies": {
@@ -19,7 +34,19 @@
     "@aws-cdk/aws-ecs": "^0.25.2",
     "@aws-cdk/aws-elasticloadbalancingv2": "^0.25.2"
   },
-  "author": "Philipp Garbe",
+  "peerDependencies": {
+    "@aws-cdk/aws-certificatemanager": "^0.25.2",
+    "@aws-cdk/aws-ec2": "^0.25.2",
+    "@aws-cdk/cdk": "^0.25.2"
+  },
+  "author": {
+    "name": "Philipp Garbe"
+  },
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pgarbe/cdk-constructs.git",
+    "directory": "packages/react-dom"
+  },
   "gitHead": "bae2897df23b7a4796ec4340d0354b1e4ca038ee"
 }
