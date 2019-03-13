@@ -1,0 +1,18 @@
+{
+  "name": "cdk-constructs-pipeline",
+  "version": "0.1.0",
+  "scripts": {
+    "synth": "cdk synth -o build --app 'node -r ts-node/register pipeline.ts'",
+    "deploy": "cdk deploy --app 'node -r ts-node/register pipeline.ts'",
+    "diff": "cdk diff --app 'node -r ts-node/register pipeline.ts'"
+  },
+  "devDependencies": {
+    "@types/node": "^11.10.4",
+    "aws-cdk": "^0.25.0",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "@aws-cdk/cdk": "^0.25.0"
+  }
+}
