@@ -11,14 +11,14 @@ bootstrap:
 	npx lerna bootstrap --reject-cycles
 
 build:
-	time npx lerna run --stream build || fail
+	npx lerna run --stream build || fail
 
 test: build
 	npx lerna run --stream lint || fail
 	npx lerna run --stream test || fail
 
 package: test
-	time npx lerna run --stream package || fail
+	npx lerna run --stream package || fail
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
