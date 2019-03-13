@@ -12,7 +12,7 @@
     "lint": "tslint 'lib/**/*.ts{,x}'"
   },
   "jsii": {
-    "outdir": "dist",
+    "outdir": "../../dist",
     "targets": {
       "java": {
         "package": "io.garbe.cdkconstructs.driftchecker",
