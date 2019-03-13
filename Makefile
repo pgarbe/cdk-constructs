@@ -3,22 +3,22 @@
 .SILENT:
 
 update_dependencies:
-	lerna exec "ncu -a"
-	lerna exec "npm install"
+	npx lerna exec "ncu -a"
+	npx lerna exec "npm install"
 
 bootstrap:
 	npm i --no-package-lock --global-style
-	lerna bootstrap --reject-cycles
+	npx lerna bootstrap --reject-cycles
 
 build:
-	time lerna run --stream build || fail
+	time npx lerna run --stream build || fail
 
 test: build
-	lerna run --stream lint || fail
-	lerna run --stream test || fail
+	npx lerna run --stream lint || fail
+	npx lerna run --stream test || fail
 
 package: test
-	time lerna run --stream package || fail
+	time npx lerna run --stream package || fail
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
