@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@aws-cdk/assert": "^0.25.0",
+    "@aws-cdk/assert": "^0.25.2",
     "@types/nodeunit": "^0.0.30",
     "jsii": "^0.7.15",
     "jsii-pacmak": "^0.7.15",
@@ -15,6 +15,8 @@
     "lint": "tslint 'packages/**/*.ts{,x}'"
   },
   "dependencies": {
-    "aws-delivlib": "^3.4.0"
+    "@pgarbe/drift-checker": "file:packages/drift-checker",
+    "@pgarbe/fargate": "file:packages/fargate",
+    "@pgarbe/lambda": "file:packages/lambda"
   }
 }

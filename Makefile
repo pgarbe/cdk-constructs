@@ -18,7 +18,12 @@ test: build
 	npx lerna run --stream test || fail
 
 package: test
+	npx lerna publish from-git
 	npx lerna run --stream package || fail
+
+# release:
+# Set git tag
+
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +

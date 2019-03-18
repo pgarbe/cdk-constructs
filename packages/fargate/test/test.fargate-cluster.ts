@@ -15,8 +15,9 @@ export = {
       vpc
     });
 
-    // THEN - stack contains a load balancer
+    // THEN - stack contains a public load balancer as default
     expect(stack).to(haveResource('AWS::ElasticLoadBalancingV2::LoadBalancer', {
+      Scheme: "internet-facing"
     }));
 
     test.done();
