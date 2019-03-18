@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "version": "0.1.1",
   "devDependencies": {
     "@aws-cdk/assert": "^0.25.2",
     "@types/nodeunit": "^0.0.30",
