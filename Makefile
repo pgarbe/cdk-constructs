@@ -21,8 +21,8 @@ package: test
 	npx lerna publish from-git
 	npx lerna run --stream package || fail
 
-# release:
-# Set git tag
+release:
+	npx release-it
 
 
 clean:
