@@ -10,7 +10,7 @@ import cdk = require('@aws-cdk/cdk');
 import delivlib = require('aws-delivlib');
 
 export class PipelineStack extends cdk.Stack {
-  constructor(parent: cdk.App, id: string, props: cdk.StackProps = { }) {
+  constructor(parent : cdk.App, id : string, props : cdk.StackProps = { }) {
     super(parent, id, props);
 
     const github = new delivlib.GitHubRepo ({
@@ -30,11 +30,10 @@ export class PipelineStack extends cdk.Stack {
         version: '0.2',
         phases: {
           install: {
-            commands: [ 'npm ci' ],
+            commands: [ 'make bootstrap' ],
           },
           build: {
             commands: [
-              'make bootstrap',
               'make package',
             ],
           },
