@@ -8,11 +8,12 @@
   },
   "devDependencies": {
     "@types/node": "^11.10.4",
-    "aws-cdk": "^0.25.0",
+    "aws-cdk": "^0.24.1",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "@aws-cdk/cdk": "^0.25.0"
+    "@aws-cdk/cdk": "^0.24.1",
+    "aws-delivlib": "^3.4.8"
   }
 }
