@@ -9,7 +9,6 @@
     "jsii-pacmak": "^0.7.15",
     "lerna": "^3.13.1",
     "nodeunit": "^0.11.3",
-    "release-it": "^10.3.1",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   },

@@ -22,9 +22,8 @@ package: test
 	npx lerna publish from-git
 	npx lerna run --stream package || fail
 
-release:
-	npx release-it
-
+bump_release:
+	npx lerna publish --force-publish=* --skip-npm --no-git-tag-version --no-push
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
