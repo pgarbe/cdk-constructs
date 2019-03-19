@@ -19,7 +19,7 @@ test: build
 	npx lerna run --stream test || fail
 
 package: test
-	npx lerna publish from-git
+	npx lerna publish
 	npx lerna run --stream package || fail
 
 bump_release:
