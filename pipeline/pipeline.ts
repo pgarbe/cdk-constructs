@@ -30,7 +30,10 @@ export class PipelineStack extends cdk.Stack {
         version: '0.2',
         phases: {
           install: {
-            commands: [ 'make bootstrap' ],
+            commands: [
+              'npm install npm -g',
+              'make bootstrap',
+            ],
           },
           build: {
             commands: [
