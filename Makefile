@@ -19,8 +19,8 @@ test: build
 	npx lerna run --stream test || fail
 
 package: test
-	npx lerna publish
 	npx lerna run --stream package || fail
+	npx lerna publish from-package || fail
 
 bump_release:
 	npx lerna publish --force-publish=* --skip-npm --no-git-tag-version --no-push
