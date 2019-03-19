@@ -3,6 +3,7 @@
 .SILENT:
 
 update_dependencies:
+	find . -name "package-lock.json" -type f -prune -exec rm -rf '{}' +
 	npx lerna exec "ncu -a"
 	npx lerna exec "npm install"
 
@@ -28,4 +29,4 @@ release:
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
 	find . -name "dist" -type d -prune -exec rm -rf '{}' +
-	find . -name "package-lock.json" -type f -prune -exec rm -rf '{}' +
+	
