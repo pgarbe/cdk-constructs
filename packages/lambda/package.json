@@ -1,6 +1,6 @@
 {
   "name": "@pgarbe/lambda",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "Production ready Concstructs for Lambda",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@pgarbe/drift-checker",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "CloudFormation Drift Checker",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
