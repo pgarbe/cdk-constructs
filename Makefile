@@ -20,7 +20,6 @@ test: build
 
 package: test
 	npx lerna run --stream package || fail
-	npx lerna publish from-package --yes || fail
 
 bump_release:
 	npx lerna version
