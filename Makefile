@@ -20,10 +20,10 @@ test: build
 
 package: test
 	npx lerna run --stream package || fail
-	npx lerna publish from-package || fail
+	npx lerna publish from-package --yes || fail
 
 bump_release:
-	npx lerna publish --force-publish=* --skip-npm --no-git-tag-version --no-push
+	npx lerna version
 
 clean:
 	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
