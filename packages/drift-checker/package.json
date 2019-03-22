@@ -2,6 +2,7 @@
   "name": "@pgarbe/drift-checker",
   "version": "0.1.0-alpha.3",
   "description": "CloudFormation Drift Checker",
+  "keywords": ["cdk", "constructs", "drift", "checker"],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

@@ -2,6 +2,7 @@
   "name": "@pgarbe/fargate",
   "version": "0.1.0-alpha.3",
   "description": "Production ready Concstructs for Fargate",
+  "keywords": ["cdk", "constructs", "fargate"],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

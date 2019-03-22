@@ -16,9 +16,6 @@ export class PipelineStack extends cdk.Stack {
     const github = new delivlib.GitHubRepo ({
       repository: 'pgarbe/cdk-constructs',
       tokenParameterName: 'github-token',
-      // commitEmail: 'philipp.garbe@web.de',
-      // commitUsername: 'pgarbe',
-      // sshKeySecret: { secretArn: 'arn:aws:secretsmanager:eu-west-1:424144556073:secret:???' },
     });
 
     const pipeline = new delivlib.Pipeline(this, 'GitHubPipeline', {
@@ -51,11 +48,6 @@ export class PipelineStack extends cdk.Stack {
     pipeline.publishToNpm({
       npmTokenSecret: { secretArn: 'arn:aws:secretsmanager:eu-west-1:424144556073:secret:npm-qxszqn' },
     });
-
-    // pipeline.autoBump({
-    //   bumpCommand: 'npm i && npm run bump',
-    //   branch: 'master',
-    // });
   }
 }
 
