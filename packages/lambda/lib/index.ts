@@ -9,8 +9,8 @@ export interface MonitoredLambdaProps {
      *
      * @default 10
      */
-    retentionDays?: number;
-    functionProps: lambda.FunctionProps
+    readonly retentionDays?: number;
+    readonly functionProps: lambda.FunctionProps
 }
 
 export class MonitoredLambda extends cdk.Construct {

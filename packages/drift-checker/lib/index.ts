@@ -9,7 +9,7 @@ export interface DriftCheckerProps {
    *
    * @default 300
    */
-  intervalMin?: number;
+  readonly intervalMin?: number;
 }
 
 export class DriftChecker extends cdk.Construct {

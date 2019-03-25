@@ -11,13 +11,13 @@ export interface FargateClusterProps {
   //  * @default 't2.micro'
   //  */
   // instanceType?: string;
-  vpc: IVpcNetwork
+  readonly vpc: IVpcNetwork
 
   /**
    * Certificate Manager certificate to associate with the load balancer.
    * Setting this option will set the load balancer port to 443.
    */
-  certificate?: ICertificate;
+  readonly certificate?: ICertificate;
 }
 
 export class FargateCluster extends cdk.Construct {
