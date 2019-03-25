@@ -26,6 +26,11 @@ export class PipelineStack extends cdk.Stack {
       buildSpec: {
         version: '0.2',
         phases: {
+          pre_build: {
+            commands: [
+              'export LC_ALL="en_US.utf8"',
+            ],
+          },
           install: {
             commands: [
               'npm install npm -g',
