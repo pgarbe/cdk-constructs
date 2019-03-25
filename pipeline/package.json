@@ -7,13 +7,13 @@
     "diff": "cdk diff --app 'node -r ts-node/register pipeline.ts'"
   },
   "devDependencies": {
-    "@types/node": "^11.10.4",
-    "aws-cdk": "^0.24.1",
-    "ts-node": "^8.0.2",
-    "typescript": "^3.3.3333"
+    "@types/node": "^11.11.6",
+    "aws-cdk": "^0.26.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "@aws-cdk/cdk": "^0.24.1",
-    "aws-delivlib": "^3.4.8"
+    "@aws-cdk/cdk": "^0.26.0",
+    "aws-delivlib": "^3.5.4"
   }
 }
