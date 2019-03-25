@@ -9,7 +9,7 @@
     "build": "jsii",
     "watch": "jsii -w",
     "package": "jsii-pacmak -v",
-    "test": "nodeunit ./test",
+    "test": "jest ./test",
     "lint": "tslint 'lib/**/*.ts{,x}'"
   },
   "jsii": {

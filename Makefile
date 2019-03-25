@@ -16,7 +16,7 @@ build:
 
 test: build
 	npx lerna run --stream lint || fail
-	npx lerna run --stream test || fail
+	npx jest
 
 package: test
 	npx lerna run --stream package || fail

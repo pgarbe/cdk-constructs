@@ -22,7 +22,7 @@ export class DriftChecker extends cdk.Construct {
     // defines an AWS Lambda resource
     const checker = new lambda.Function(this, 'CheckerHandler', {
       runtime: lambda.Runtime.NodeJS810,      // execution environment
-      code: lambda.Code.asset('../lambda'),  // code loaded from the "lambda" directory
+      code: lambda.Code.asset('packages/drift-checker/lambda'),  // code loaded from the "lambda" directory
       handler: 'checker.handler'                // file is "checker", function is "handler"
     });
 
