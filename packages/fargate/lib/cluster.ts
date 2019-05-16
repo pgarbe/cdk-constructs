@@ -22,9 +22,6 @@ export interface FargateClusterProps {
 
 export class FargateCluster extends cdk.Construct {
 
-  /** @returns the ARN of the SQS queue */
-  // public readonly queueArn: sqs.QueueArn;
-
   constructor(parent: cdk.Construct, name: string, props: FargateClusterProps) {
     super(parent, name);
 

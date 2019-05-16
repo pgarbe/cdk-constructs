@@ -1,5 +1,6 @@
 import cloudwatch = require('@aws-cdk/aws-cloudwatch');
 import events = require('@aws-cdk/aws-events');
+import eventTargets = require('@aws-cdk/aws-events-targets');
 import lambda = require('@aws-cdk/aws-lambda');
 import cdk = require('@aws-cdk/cdk');
 import path = require('path');
@@ -14,8 +15,6 @@ export interface DriftCheckerProps {
 }
 
 export class DriftChecker extends cdk.Construct {
-  /** @returns the ARN of the SQS queue */
-  public readonly queueArn: string;
 
   constructor(parent: cdk.Construct, name: string, props: DriftCheckerProps = {}) {
     super(parent, name);
@@ -34,14 +33,16 @@ export class DriftChecker extends cdk.Construct {
         scheduleExpression: `rate(${interval} ${unit})`
       });
 
-      timer.addTarget(checker);
+      const target = new eventTargets.LambdaFunction(checker);
+
+      timer.addTarget(target);
     }
   }
 
   /**
    * Return the given named metric for this Construct
    */
-  public metric(metricName: string, props?: cloudwatch.MetricCustomization): cloudwatch.Metric {
+  public metric(metricName: string, props?: cloudwatch.MetricOptions): cloudwatch.Metric {
     return new cloudwatch.Metric({
       namespace: 'pgarbe/drift-checker',
       metricName,
@@ -55,7 +56,7 @@ export class DriftChecker extends cdk.Construct {
    *
    * @default average over 5 minutes
    */
-  public metricDriftedStacks(props?: cloudwatch.MetricCustomization): cloudwatch.Metric {
+  public metricDriftedStacks(props?: cloudwatch.MetricOptions): cloudwatch.Metric {
     return this.metric('DriftedStacks', props );
   }
   // TODO: Expose "metrics"

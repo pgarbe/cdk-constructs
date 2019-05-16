@@ -1,6 +1,6 @@
 module.exports = {
   preset: 'ts-jest',
-  testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
   testPathIgnorePatterns: [".d.ts"],
   testEnvironment: 'node',
   collectCoverage: true,

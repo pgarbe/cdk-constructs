@@ -29,14 +29,20 @@
     }
   },
   "dependencies": {
-    "@aws-cdk/aws-ec2": "^0.26.0",
-    "@aws-cdk/aws-ecs": "^0.26.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "^0.26.0"
+    "@aws-cdk/aws-ec2": "^0.30.0",
+    "@aws-cdk/aws-ecs": "^0.30.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^0.30.0",
+    "@aws-cdk/aws-events-targets": "^0.30.0"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-certificatemanager": "^0.26.0",
-    "@aws-cdk/aws-ec2": "^0.26.0",
-    "@aws-cdk/cdk": "^0.26.0"
+    "@aws-cdk/aws-certificatemanager": "^0.30.0",
+    "@aws-cdk/aws-cloudwatch": "^0.30.0",
+    "@aws-cdk/aws-ec2": "^0.30.0",
+    "@aws-cdk/aws-ecs": "^0.30.0",
+    "@aws-cdk/aws-events": "^0.30.0",
+    "@aws-cdk/cdk": "^0.30.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^0.30.0",
+    "@aws-cdk/aws-events-targets": "^0.30.0"
   },
   "author": {
     "name": "Philipp Garbe"

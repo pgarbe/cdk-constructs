@@ -12,6 +12,7 @@ For now, a playground for [AWS CDK](https://awslabs.github.io/aws-cdk/) construc
 * ReverseDriftDetection (tbd)
 * ScalingEcsCluster (tbd)
 * ReliableEcrRepo (tbd)
+* Hugo based blog (tbd)
 
 ## Developing
 All useful commands are handled in `Makefile`

@@ -7,3 +7,4 @@ lerna-debug.log
 dist
 .npmignore
 coverage
+!jest.config.js

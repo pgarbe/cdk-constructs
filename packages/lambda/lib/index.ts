@@ -1,37 +1,41 @@
-import { Alarm } from '@aws-cdk/aws-cloudwatch';
+import { Alarm, IAlarmAction } from '@aws-cdk/aws-cloudwatch';
 import lambda = require('@aws-cdk/aws-lambda');
-import { LogGroup } from '@aws-cdk/aws-logs';
 import cdk = require('@aws-cdk/cdk');
 
 export interface MonitoredLambdaProps {
-    /**
-     * Number of days after CloudWatch logs of the Lambda should expire
-     *
-     * @default 10
-     */
-    readonly retentionDays?: number;
-    readonly functionProps: lambda.FunctionProps
+  readonly functionProps: lambda.FunctionProps
+  readonly alarmActions: IAlarmAction
 }
 
-export class MonitoredLambda extends cdk.Construct {
+export interface IMonitoredLambda extends cdk.IConstruct {
+  readonly lambda: lambda.Function;
+}
 
-    /** @returns the ARN of the SQS queue */
-    // public readonly queueArn: sqs.QueueArn;
+export class MonitoredLambda extends cdk.Construct implements IMonitoredLambda {
 
-    constructor(parent: cdk.Construct, name: string, props: MonitoredLambdaProps) {
-        super(parent, name);
+  /** @returns the lambda function */
+  public readonly lambda: lambda.Function;
 
-        const fn = new lambda.Function(this, name, props.functionProps);
+  constructor(parent: cdk.Construct, name: string, props: MonitoredLambdaProps) {
+    super(parent, name);
 
-        new Alarm(this, 'Alarm', {
-            metric: fn.metricErrors(),
-            threshold: 0,
-            evaluationPeriods: 2,
-        });
+    props = {
+      ...props,
+      functionProps: {
+        logRetentionDays: 7, // My default here
+        ...props.functionProps // user given always wins if provided
+      }
+    };
 
-        new LogGroup(this, 'LogGroup', {
-            logGroupName: fn.functionName,
-            retentionDays: props.retentionDays
-        });
-    }
+    const fn = new lambda.Function(this, name, props.functionProps);
+
+    const alarm = new Alarm(this, 'Alarm', {
+      metric: fn.metricErrors(),
+      threshold: 0,
+      evaluationPeriods: 2,
+    });
+    alarm.onAlarm(props.alarmActions);
+
+    this.lambda = fn;
+  }
 }

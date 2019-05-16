@@ -3,15 +3,16 @@
   "private": true,
   "version": "0.1.2",
   "devDependencies": {
-    "@aws-cdk/assert": "^0.26.0",
-    "@types/jest": "^24.0.11",
-    "jest": "^24.5.0",
-    "jsii": "^0.8.0",
-    "jsii-pacmak": "^0.8.0",
-    "lerna": "^3.13.1",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.4000"
+    "@aws-cdk/assert": "^0.30.0",
+    "@types/jest": "^24.0.12",
+    "@types/node": "^11.13.8",
+    "jest": "^24.7.1",
+    "jsii": "^0.10.3",
+    "jsii-pacmak": "^0.10.3",
+    "lerna": "^3.13.4",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "lint": "tslint 'packages/**/*.ts{,x}'",

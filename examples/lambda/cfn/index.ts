@@ -1,28 +1,32 @@
-import cdk = require('@aws-cdk/cdk');
-import lambda = require('@aws-cdk/aws-lambda');
-import monitoredLambda = require('@pgarbe/monitored-lambda')
+import lambda = require("@aws-cdk/aws-lambda");
+import sns = require("@aws-cdk/aws-sns");
+import cdk = require("@aws-cdk/cdk");
+import monitoredLambda = require("@pgarbe/lambda");
 
 class MyStack extends cdk.Stack {
-    constructor(parent: cdk.App, id: string, props?: cdk.StackProps) {
-        super(parent, id, props);
+  constructor(parent: cdk.App, id: string, props?: cdk.StackProps) {
+    super(parent, id, props);
 
-        new monitoredLambda.MonitoredLambda(this, 'MyFirstLambda', {
-            retentionDays: 5,
-            functionProps: {
-                runtime: lambda.Runtime.NodeJS810,
-                handler: 'index.handler',
-                code: lambda.Code.asset('./lambda-handler'),
-            }
-        });
-        
-    }
+    const alarmQueue = new sns.Topic(parent, 'Alarms', {
+      topicName: "myalarms"
+    });
+
+    new monitoredLambda.MonitoredLambda(this, "MyFirstLambda", {
+      functionProps: {
+        runtime: lambda.Runtime.NodeJS810,
+        handler: "index.handler",
+        code: lambda.Code.asset("./lambda-handler")
+      },
+      alarmActions: alarmQueue
+    });
+  }
 }
 
 class MyApp extends cdk.App {
-    constructor() {
-        super();
-        new MyStack(this, 'hello-cdk');
-    }
+  constructor() {
+    super();
+    new MyStack(this, "hello-cdk");
+  }
 }
 
 new MyApp().run();
