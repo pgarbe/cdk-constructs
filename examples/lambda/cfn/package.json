@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-cdk/aws-lambda": "^0.14.1",
-    "@aws-cdk/aws-sns": "^0.30.0",
-    "@aws-cdk/cdk": "^0.14.1",
+    "@aws-cdk/aws-lambda": "^0.36.1",
+    "@aws-cdk/aws-sns": "^0.36.1",
+    "@aws-cdk/core": "^0.36.1",
     "@pgarbe/monitored-lambda": "file:../monitored-lambda",
     "@types/node": "^10.12.2"
   }

@@ -6,7 +6,7 @@
 //
 //     npm run pipeline-update
 //
-import cdk = require('@aws-cdk/cdk');
+import cdk = require('@aws-cdk/core');
 import delivlib = require('aws-delivlib');
 
 export class PipelineStack extends cdk.Stack {

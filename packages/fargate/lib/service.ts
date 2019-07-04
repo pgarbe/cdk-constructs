@@ -1,14 +1,14 @@
 import { IAlarmAction } from '@aws-cdk/aws-cloudwatch';
 import ec2 = require('@aws-cdk/aws-ec2');
 import { FargatePlatformVersion, FargateTaskDefinition, ICluster } from '@aws-cdk/aws-ecs';
-import { EventRule } from '@aws-cdk/aws-events';
+import { Rule } from '@aws-cdk/aws-events';
 import eventTargets = require('@aws-cdk/aws-events-targets');
 import lambda = require('@aws-cdk/aws-lambda');
-import cdk = require('@aws-cdk/cdk');
+import cdk = require('@aws-cdk/core');
 import { MonitoredLambda } from '@pgarbe/lambda';
 
 export interface EventsTriggeredFargateServiceProps {
-  readonly eventRule: EventRule;
+  readonly eventRule: Rule;
 
   /**
    * Cluster where service will be deployed
@@ -32,7 +32,7 @@ export interface EventsTriggeredFargateServiceProps {
    *
    * @default Private subnet if assignPublicIp, public subnets otherwise
    */
-  readonly vpcSubnets?: ec2.IVpcSubnet;
+  readonly vpcSubnets?: ec2.ISubnet;
 
   /**
    * Existing security group to use for the tasks
@@ -67,7 +67,7 @@ export class EventsTriggeredFargateService extends cdk.Construct implements IEve
 
     const triggerLambda = new MonitoredLambda(this, 'TriggerLambda', {
       functionProps: {
-        runtime: lambda.Runtime.NodeJS810,
+        runtime: lambda.Runtime.NODEJS_10_X,
         handler: 'index.handler',
         code: lambda.Code.asset('./trigger-lambda.js'),
         environment: {
@@ -76,7 +76,7 @@ export class EventsTriggeredFargateService extends cdk.Construct implements IEve
 
           // AwsVpcNetworking(props.cluster.vpc, props.assignPublicIp, props.vpcPlacement, props.securityGroup);
         },
-        logRetentionDays: 7
+        logRetention: 7
       },
       alarmActions: props.alarmAction
     });

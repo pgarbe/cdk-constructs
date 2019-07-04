@@ -8,3 +8,4 @@ dist
 .npmignore
 coverage
 !jest.config.js
+.DS_Store

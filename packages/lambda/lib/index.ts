@@ -1,6 +1,6 @@
 import { Alarm, IAlarmAction } from '@aws-cdk/aws-cloudwatch';
 import lambda = require('@aws-cdk/aws-lambda');
-import cdk = require('@aws-cdk/cdk');
+import cdk = require('@aws-cdk/core');
 
 export interface MonitoredLambdaProps {
   readonly functionProps: lambda.FunctionProps
@@ -22,7 +22,7 @@ export class MonitoredLambda extends cdk.Construct implements IMonitoredLambda {
     props = {
       ...props,
       functionProps: {
-        logRetentionDays: 7, // My default here
+        logRetention: 7, // My default here
         ...props.functionProps // user given always wins if provided
       }
     };
@@ -34,7 +34,7 @@ export class MonitoredLambda extends cdk.Construct implements IMonitoredLambda {
       threshold: 0,
       evaluationPeriods: 2,
     });
-    alarm.onAlarm(props.alarmActions);
+    alarm.addAlarmAction(props.alarmActions);
 
     this.lambda = fn;
   }

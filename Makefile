@@ -4,13 +4,13 @@
 
 update_dependencies:
 	find . -name "package-lock.json" -type f -prune -exec rm -rf '{}' +
-	npx lerna exec "ncu -a"
+	npx lerna exec "npx ncu -u"
 	npx lerna exec "npm install"
 
-	ncu -a
+	npx ncu -u
 	npm i
 
-	cd pipeline && ncu -a && npm i
+	cd pipeline && npx ncu -a && npm i
 
 bootstrap:
 	npm i --no-package-lock --global-style

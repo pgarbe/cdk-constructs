@@ -1,8 +1,8 @@
 import { ICertificate } from '@aws-cdk/aws-certificatemanager';
-import { IVpcNetwork } from '@aws-cdk/aws-ec2';
+import { IVpc } from '@aws-cdk/aws-ec2';
 import ecs = require('@aws-cdk/aws-ecs');
 import elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
-import cdk = require('@aws-cdk/cdk');
+import cdk = require('@aws-cdk/core');
 
 export interface FargateClusterProps {
   // /**
@@ -11,7 +11,7 @@ export interface FargateClusterProps {
   //  * @default 't2.micro'
   //  */
   // instanceType?: string;
-  readonly vpc: IVpcNetwork
+  readonly vpc: IVpc
 
   /**
    * Certificate Manager certificate to associate with the load balancer.

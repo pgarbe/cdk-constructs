@@ -1,7 +1,7 @@
 import { expect, haveResource } from '@aws-cdk/assert';
-import { IAlarmAction } from '@aws-cdk/aws-cloudwatch';
+import { IAlarm, IAlarmAction } from '@aws-cdk/aws-cloudwatch';
 import lambda = require('@aws-cdk/aws-lambda');
-import { Stack } from '@aws-cdk/cdk';
+import { Construct, Stack } from '@aws-cdk/core';
 import sut = require('../lib');
 
 test('test default monitored lambda construct', () => {
@@ -12,7 +12,7 @@ test('test default monitored lambda construct', () => {
   // WHEN
   new sut.MonitoredLambda(stack, 'lambda', {
     functionProps: {
-      runtime: lambda.Runtime.NodeJS810,
+      runtime: lambda.Runtime.NODEJS_8_10,
       handler: 'index.handler',
       code: lambda.Code.inline('code'),
     },
@@ -32,7 +32,7 @@ class TestAlarmAction implements IAlarmAction {
   constructor(private readonly arn: string) {
   }
 
-  public get alarmActionArn(): string {
-    return this.arn;
+  public bind(_scope: Construct, _alarm: IAlarm) {
+    return { alarmActionArn: this.arn };
   }
 }

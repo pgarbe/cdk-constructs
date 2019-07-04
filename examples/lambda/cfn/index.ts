@@ -1,6 +1,6 @@
 import lambda = require("@aws-cdk/aws-lambda");
 import sns = require("@aws-cdk/aws-sns");
-import cdk = require("@aws-cdk/cdk");
+import cdk = require("@aws-cdk/core");
 import monitoredLambda = require("@pgarbe/lambda");
 
 class MyStack extends cdk.Stack {
@@ -13,7 +13,7 @@ class MyStack extends cdk.Stack {
 
     new monitoredLambda.MonitoredLambda(this, "MyFirstLambda", {
       functionProps: {
-        runtime: lambda.Runtime.NodeJS810,
+        runtime: lambda.Runtime.NODEJS_10_X,
         handler: "index.handler",
         code: lambda.Code.asset("./lambda-handler")
       },
