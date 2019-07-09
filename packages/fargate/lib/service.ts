@@ -1,88 +1,174 @@
 import { IAlarmAction } from '@aws-cdk/aws-cloudwatch';
-import ec2 = require('@aws-cdk/aws-ec2');
-import { FargatePlatformVersion, FargateTaskDefinition, ICluster } from '@aws-cdk/aws-ecs';
-import { Rule } from '@aws-cdk/aws-events';
-import eventTargets = require('@aws-cdk/aws-events-targets');
-import lambda = require('@aws-cdk/aws-lambda');
+import ecs = require('@aws-cdk/aws-ecs');
+import iam = require('@aws-cdk/aws-iam');
 import cdk = require('@aws-cdk/core');
-import { MonitoredLambda } from '@pgarbe/lambda';
+import { IFargateCluster } from './cluster';
 
-export interface EventsTriggeredFargateServiceProps {
-  readonly eventRule: Rule;
+export interface SharedAlbFargateServiceProps {
+
+  /**
+   * The image to start.
+   */
+  readonly image: ecs.ContainerImage;
+
+  /**
+   * The container port of the application load balancer attached to your Fargate service. Corresponds to container port mapping.
+   *
+   * @default 80
+   */
+  readonly containerPort?: number;
+
+  /**
+   * Determines whether your Fargate Service will be assigned a public IP address.
+   *
+   * @default false
+   */
+  readonly publicTasks?: boolean;
+
+  /**
+   * Number of desired copies of running tasks
+   *
+   * @default 1
+   */
+  readonly desiredCount?: number;
+
+  /**
+   * Environment variables to pass to the container
+   *
+   * @default - No environment variables.
+   */
+  readonly environment?: { [key: string]: string };
 
   /**
    * Cluster where service will be deployed
    */
-  readonly cluster: ICluster; // should be required? do we assume 'default' exists?
+  readonly fargateCluster: IFargateCluster; // should be required? do we assume 'default' exists?
 
   /**
-   * Task Definition used for running tasks in the service
+   * The number of cpu units used by the task.
+   * Valid values, which determines your range of valid values for the memory parameter:
+   * 256 (.25 vCPU) - Available memory values: 0.5GB, 1GB, 2GB
+   * 512 (.5 vCPU) - Available memory values: 1GB, 2GB, 3GB, 4GB
+   * 1024 (1 vCPU) - Available memory values: 2GB, 3GB, 4GB, 5GB, 6GB, 7GB, 8GB
+   * 2048 (2 vCPU) - Available memory values: Between 4GB and 16GB in 1GB increments
+   * 4096 (4 vCPU) - Available memory values: Between 8GB and 30GB in 1GB increments
+   *
+   * This default is set in the underlying FargateTaskDefinition construct.
+   *
+   * @default 256
    */
-  readonly taskDefinition: FargateTaskDefinition;
+  readonly cpu?: number;
 
   /**
-   * Assign public IP addresses to each task
+   * The amount (in MiB) of memory used by the task.
    *
-   * @default false
+   * This field is required and you must use one of the following values, which determines your range of valid values
+   * for the cpu parameter:
+   *
+   * 0.5GB, 1GB, 2GB - Available cpu values: 256 (.25 vCPU)
+   *
+   * 1GB, 2GB, 3GB, 4GB - Available cpu values: 512 (.5 vCPU)
+   *
+   * 2GB, 3GB, 4GB, 5GB, 6GB, 7GB, 8GB - Available cpu values: 1024 (1 vCPU)
+   *
+   * Between 4GB and 16GB in 1GB increments - Available cpu values: 2048 (2 vCPU)
+   *
+   * Between 8GB and 30GB in 1GB increments - Available cpu values: 4096 (4 vCPU)
+   *
+   * This default is set in the underlying FargateTaskDefinition construct.
+   *
+   * @default 512
    */
-  readonly assignPublicIp?: boolean;
+  readonly memoryLimitMiB?: number;
 
   /**
-   * In what subnets to place the task's ENIs
+   * Override for the Fargate Task Definition execution role
    *
-   * @default Private subnet if assignPublicIp, public subnets otherwise
+   * @default - No value
    */
-  readonly vpcSubnets?: ec2.ISubnet;
+  readonly executionRole?: iam.IRole;
 
   /**
-   * Existing security group to use for the tasks
+   * Override for the Fargate Task Definition task role
    *
-   * @default A new security group is created
+   * @default - No value
    */
-  readonly securityGroup?: ec2.ISecurityGroup;
+  readonly taskRole?: iam.IRole;
 
   /**
-   * Fargate platform version to run this service on
+   * Override value for the container name
    *
-   * Unless you have specific compatibility requirements, you don't need to
-   * specify this.
-   *
-   * @default Latest
+   * @default - No value
    */
-  readonly platformVersion?: FargatePlatformVersion;
+  readonly containerName?: string;
+
+  /**
+   * Whether to create an AWS log driver
+   *
+   * @default true
+   */
+  readonly enableLogging?: boolean;
+
+  /**
+   * Override value for the service name
+   *
+   * @default CloudFormation-generated name
+   */
+  readonly serviceName?: string;
+
   readonly alarmAction: IAlarmAction;
 }
 
-export interface IEventsTriggeredFargateService extends cdk.IConstruct {
-  readonly fooArn: string;
+export interface ISharedAlbFargateService extends cdk.IConstruct {
+  readonly logDriver?: ecs.LogDriver;
 }
 
-export class EventsTriggeredFargateService extends cdk.Construct implements IEventsTriggeredFargateService {
+export class SharedAlbFargateService extends cdk.Construct implements ISharedAlbFargateService {
 
-  public readonly fooArn: string;
+  public readonly logDriver?: ecs.LogDriver;
 
-  constructor(parent: cdk.Construct, name: string, props: EventsTriggeredFargateServiceProps) {
+  constructor(parent: cdk.Construct, name: string, props: SharedAlbFargateServiceProps) {
     super(parent, name);
-    this.fooArn = "";
 
-    const triggerLambda = new MonitoredLambda(this, 'TriggerLambda', {
-      functionProps: {
-        runtime: lambda.Runtime.NODEJS_10_X,
-        handler: 'index.handler',
-        code: lambda.Code.asset('./trigger-lambda.js'),
-        environment: {
-          taskDefinitionArn: props.taskDefinition.taskDefinitionArn,
-          // securityGroups: props.networkConfiguration.address
+    // Create log driver if logging is enabled
+    const enableLogging = props.enableLogging !== undefined ? props.enableLogging : true;
+    this.logDriver = enableLogging ? new ecs.AwsLogDriver({ streamPrefix: this.node.id }) : undefined;
 
-          // AwsVpcNetworking(props.cluster.vpc, props.assignPublicIp, props.vpcPlacement, props.securityGroup);
-        },
-        logRetention: 7
-      },
-      alarmActions: props.alarmAction
+    const taskDefinition = new ecs.FargateTaskDefinition(this, 'TaskDef', {
+      memoryLimitMiB: props.memoryLimitMiB,
+      cpu: props.cpu,
+      executionRole: props.executionRole !== undefined ? props.executionRole : undefined,
+      taskRole: props.taskRole !== undefined ? props.taskRole : undefined
     });
 
-    const target = new eventTargets.LambdaFunction(triggerLambda.lambda);
-    props.eventRule.addTarget(target);
+    const containerName = props.containerName !== undefined ? props.containerName : 'web';
 
+    const container = taskDefinition.addContainer(containerName, {
+      image: props.image,
+      logging: this.logDriver,
+      environment: props.environment
+    });
+
+    container.addPortMappings({
+      containerPort: props.containerPort || 80,
+    });
+
+    const assignPublicIp = props.publicTasks !== undefined ? props.publicTasks : false;
+    const service = new ecs.FargateService(this, "Service", {
+      cluster: props.fargateCluster.cluster,
+      desiredCount: props.desiredCount || 1,
+      taskDefinition,
+      assignPublicIp,
+      serviceName: props.serviceName,
+    });
+
+    const targetProps = {
+      hostHeader: 'example.com',
+      port: 80,
+      targets: [service],
+      priority: 1
+    };
+
+    props.fargateCluster.listener.addTargets('ECSTargets', targetProps);
   }
 }

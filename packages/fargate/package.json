@@ -42,7 +42,9 @@
     "@aws-cdk/aws-events": "^0.36.2",
     "@aws-cdk/core": "^0.36.2",
     "@aws-cdk/aws-elasticloadbalancingv2": "^0.36.2",
-    "@aws-cdk/aws-events-targets": "^0.36.2"
+    "@aws-cdk/aws-events-targets": "^0.36.2",
+    "@aws-cdk/aws-iam": "^0.36.2",
+    "@aws-cdk/aws-route53": "^0.36.2"
   },
   "author": {
     "name": "Philipp Garbe"
