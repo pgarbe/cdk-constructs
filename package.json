@@ -3,16 +3,16 @@
   "private": true,
   "version": "0.1.2",
   "devDependencies": {
-    "@aws-cdk/assert": "^0.36.2",
+    "@aws-cdk/assert": "^0.39.0",
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.12",
+    "@types/node": "^12.6.1",
     "jest": "^24.8.0",
-    "jsii": "^0.13.4",
-    "jsii-pacmak": "^0.13.4",
+    "jsii": "^0.14.0",
+    "jsii-pacmak": "^0.14.0",
     "lerna": "^3.15.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "lint": "tslint 'packages/**/*.ts{,x}'",
@@ -22,12 +22,12 @@
     "@pgarbe/drift-checker": "file:packages/drift-checker",
     "@pgarbe/fargate": "file:packages/fargate",
     "@pgarbe/lambda": "file:packages/lambda",
-    "npm-check-updates": "^3.1.13"
+    "npm-check-updates": "^3.1.17"
   },
   "peerDependencies": {
     "@pgarbe/drift-checker": "file:packages/drift-checker",
     "@pgarbe/fargate": "file:packages/fargate",
     "@pgarbe/lambda": "file:packages/lambda",
-    "npm-check-updates": "^3.1.13"
+    "npm-check-updates": "^3.1.17"
   }
 }

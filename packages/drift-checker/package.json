@@ -30,16 +30,16 @@
     }
   },
   "dependencies": {
-    "@aws-cdk/aws-cloudwatch": "^0.36.2",
-    "@aws-cdk/aws-events-targets": "^0.36.2",
-    "@aws-cdk/aws-lambda": "^0.36.2",
-    "@aws-cdk/core": "^0.36.2"
+    "@aws-cdk/aws-cloudwatch": "^0.39.0",
+    "@aws-cdk/aws-events-targets": "^0.39.0",
+    "@aws-cdk/aws-lambda": "^0.39.0",
+    "@aws-cdk/core": "^0.39.0"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-cloudwatch": "^0.36.2",
-    "@aws-cdk/core": "^0.36.2",
-    "@aws-cdk/aws-lambda": "^0.36.2",
-    "@aws-cdk/aws-events-targets": "^0.36.2"
+    "@aws-cdk/aws-cloudwatch": "^0.39.0",
+    "@aws-cdk/core": "^0.39.0",
+    "@aws-cdk/aws-lambda": "^0.39.0",
+    "@aws-cdk/aws-events-targets": "^0.39.0"
   },
   "author": {
     "name": "Philipp Garbe"
@@ -52,6 +52,6 @@
   },
   "gitHead": "bae2897df23b7a4796ec4340d0354b1e4ca038ee",
   "devDependencies": {
-    "@types/node": "^12.0.12"
+    "@types/node": "^12.6.1"
   }
 }
